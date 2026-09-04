@@ -1,5 +1,4 @@
-DXライブラリのライセンス
-
+DXライブラリのライセンスについて
 https://dxlib.xsrv.jp/dxlicense.html より、以下に示す。
 
 ライセンスについて
