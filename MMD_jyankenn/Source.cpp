@@ -145,7 +145,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         FileHandle = FileRead_open("ranking.txt");
 
-        // 一行読む
+        // 一行ずつ読む
         // FileRead_gets(rankingdata_001.Day_ranking , 256, FileHandle);
         DrawFormatString(0, 80, GetColor(255, 255, 255), "何日 何時:何分,何秒 ユーザー名 連勝数 \n");
         for (i = 0; i < 10; i++) {
@@ -195,7 +195,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             {
                 // じゃんけん入力指示文字列の描画
                 DrawFormatString(0, 0, GetColor(255, 255, 255), "%d 回目の勝負です", rennsyousuu + 1);
-                DrawString(0, 30, "あなたの出す手を入力して、エンターキーを押してください。\nグー → g\nチョキ → c\nパー → p\nEXIT → e\n管理者用 → a", GetColor(255, 255, 255));
+                DrawString(0, 30, "あなたの出す手を入力して、エンターキーを押してください。\nグー → g\nチョキ → c\nパー → p\nEXIT → e", GetColor(255, 255, 255));
 
                 // プレイヤーのじゃんけん入力
                 KeyInputSingleCharString(0, 150, 100, player_jyannkenn_te, FALSE);
@@ -203,18 +203,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 // 画面の初期化
                 ClearDrawScreen();
 
+                for (i = 9;i > 0;i--)
+                {
+                    player_jyannkenn_te[i] = '\0';
+                }
+
                 // EXITかを確認
-                if (player_jyannkenn_te[0] == 'e') {
+                if (player_jyannkenn_te[0] == 'e') 
+                {
                     WaitTimer(500);
                     re = 2;
-                }else if (player_jyannkenn_te[0] == 'a') {
-                    end = 1;
-                    WaitTimer(500);
-                    re = 1;
-                    DxLib_End();  // ＤＸライブラリ使用の終了処理
-                    return 0;     // ソフトの終了
-
-                }else if (player_jyannkenn_te[0] == 'g' || player_jyannkenn_te[0] == 'c' || player_jyannkenn_te[0] == 'p')
+                }
+                else if (player_jyannkenn_te[0] == 'g' || player_jyannkenn_te[0] == 'c' || player_jyannkenn_te[0] == 'p')
                 {
                     re = 1;
                 }
@@ -226,6 +226,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 {
                     re = 0;
                 }
+
+
 
             }
 
